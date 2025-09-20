@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmyk70ytsl6j6"]
+[gd_scene load_steps=11 format=3 uid="uid://dmyk70ytsl6j6"]
 
 [ext_resource type="Script" uid="uid://bs784sar2r12q" path="res://Scene's/Player/player.gd" id="1_1o2ln"]
-[ext_resource type="Texture2D" uid="uid://b5fyb1fjbfl1m" path="res://Scene's/Player/Player.png" id="1_8xa5j"]
+[ext_resource type="Texture2D" uid="uid://caifugw5ch78g" path="res://Assets/Ninja Adventure Pack/FX/Particle/Wind_Test.png" id="2_vpbcj"]
 [ext_resource type="Texture2D" uid="uid://dwca3drc8x2o4" path="res://Assets/Ninja Adventure Pack/FX/Particle/Leaf Single.png" id="3_0yfqw"]
+[ext_resource type="Texture2D" uid="uid://c3pier1pjxijk" path="res://Assets/Ninja Adventure Pack/FX/Particle/Stick.png" id="4_ks8de"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o2ln"]
 radius = 34.058773
@@ -13,8 +14,18 @@ radius = 266.0921
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpbcj"]
 radius = 68.0294
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5180"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.79999995
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vpbcj"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.7, 0.7, 0.7)
 emission_shape = 3
 emission_box_extents = Vector3(400, 400, 400)
 angular_velocity_min = 9.999984
@@ -26,7 +37,25 @@ radial_velocity_max = -2.2351742e-05
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.2351742e-06
 radial_accel_max = -2.2351742e-06
-scale_min = 0.29999998
+scale_min = 0.5
+scale_max = 1.1999999
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_enimj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.7, 0.7, 0.7)
+emission_shape = 3
+emission_box_extents = Vector3(400, 400, 400)
+angular_velocity_min = 9.999984
+angular_velocity_max = 99.999985
+orbit_velocity_min = 0.050000098
+orbit_velocity_max = 0.1000001
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.19999999
+scale_max = 0.39999998
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("follow_camera")]
 script = ExtResource("1_1o2ln")
@@ -37,13 +66,9 @@ position = Vector2(-4, 1)
 shape = SubResource("CircleShape2D_1o2ln")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(0.99999994, 0.99999994)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.5
-
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
-texture = ExtResource("1_8xa5j")
 
 [node name="WindArea" type="Area2D" parent="."]
 scale = Vector2(0.99999994, 0.99999994)
@@ -63,11 +88,32 @@ position = Vector2(0, 3.0000005)
 shape = SubResource("CircleShape2D_vpbcj")
 
 [node name="Tornado Wind" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1)
+amount = 50
+sub_emitter = NodePath(".")
+texture = ExtResource("2_vpbcj")
+lifetime = 0.25
+speed_scale = 0.5
+trail_lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_i5180")
+
+[node name="Tornado Trail" type="GPUParticles2D" parent="."]
+visible = false
+
+[node name="Leaf Wind" type="GPUParticles2D" parent="."]
 amount = 200
 sub_emitter = NodePath(".")
 texture = ExtResource("3_0yfqw")
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_vpbcj")
+
+[node name="Branches Wind" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1)
+amount = 100
+sub_emitter = NodePath(".")
+texture = ExtResource("4_ks8de")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_enimj")
 
 [connection signal="body_entered" from="WindArea" to="." method="_on_wind_area_body_entered"]
 [connection signal="body_exited" from="WindArea" to="." method="_on_wind_area_body_exited"]
