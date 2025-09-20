@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	var dir := Vector2(x, y).normalized()
 	velocity = dir * move_speed
 	move_and_slide()
-	if sprite: sprite.rotation += 5.0 * delta
 
 	for b in inside_wind:
 		if is_instance_valid(b) and b is RigidBody2D:

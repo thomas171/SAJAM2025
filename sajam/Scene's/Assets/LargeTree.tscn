@@ -48,7 +48,8 @@ animations = [{
 [node name="Large Tree" type="StaticBody2D"]
 scale = Vector2(4, 4)
 script = ExtResource("1_6lntx")
-max_health = 7
+intact_hp = 7
+break_hp = 6
 wind_shake_px = 0.25
 wind_sway_deg = 0.25
 

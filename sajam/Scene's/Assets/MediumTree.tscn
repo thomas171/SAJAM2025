@@ -48,7 +48,8 @@ animations = [{
 [node name="Medium  Tree" type="StaticBody2D"]
 scale = Vector2(3, 3)
 script = ExtResource("1_vct0b")
-max_health = 5
+intact_hp = 5
+break_hp = 4
 wind_shake_px = 0.5
 wind_sway_deg = 0.5
 
