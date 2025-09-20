@@ -14,7 +14,7 @@ extends CharacterBody2D
 @export var accel: float        = 600.0   
 @export var decel: float        = 600.0  
 @export var turn_rate: float    = 1.5   
-@export var drift_jitter: float = 1.2     
+@export var drift_jitter: float = 5.0     
 
 @onready var sprite: Sprite2D = $Sprite
 
