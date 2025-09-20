@@ -25,6 +25,9 @@ var tornado_speed := 100.0
 var heading: Vector2 = Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		get_tree().quit()
+		
 	var x := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y := Input.get_action_strength("move_down")  - Input.get_action_strength("move_up")
 	var input_dir := Vector2(x,y).normalized()
