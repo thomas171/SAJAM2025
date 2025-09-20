@@ -1,19 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmyk70ytsl6j6"]
+[gd_scene load_steps=6 format=3 uid="uid://dmyk70ytsl6j6"]
 
 [ext_resource type="Script" uid="uid://bs784sar2r12q" path="res://Scene's/Player/player.gd" id="1_1o2ln"]
 [ext_resource type="Texture2D" uid="uid://b5fyb1fjbfl1m" path="res://Scene's/Player/Player.png" id="1_8xa5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o2ln"]
-radius = 58.76
+radius = 34.058773
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yfqw"]
+radius = 266.0921
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpbcj"]
+radius = 68.0294
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("follow_camera")]
 script = ExtResource("1_1o2ln")
+follow_camera = NodePath("Camera2D")
+
+[node name="Actual Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 1)
+shape = SubResource("CircleShape2D_1o2ln")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
 texture = ExtResource("1_8xa5j")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="WindArea" type="Area2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1o2ln")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea"]
+shape = SubResource("CircleShape2D_0yfqw")
+
+[node name="BreakArea" type="Area2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakArea"]
+position = Vector2(0, 3.0000005)
+shape = SubResource("CircleShape2D_vpbcj")
+
+[connection signal="body_entered" from="WindArea" to="." method="_on_wind_area_body_entered"]
+[connection signal="body_exited" from="WindArea" to="." method="_on_wind_area_body_exited"]
+[connection signal="body_entered" from="BreakArea" to="." method="_on_break_area_body_entered"]
+[connection signal="body_exited" from="BreakArea" to="." method="_on_break_area_body_exited"]
