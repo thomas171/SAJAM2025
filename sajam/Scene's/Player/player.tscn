@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmyk70ytsl6j6"]
+[gd_scene load_steps=7 format=3 uid="uid://dmyk70ytsl6j6"]
 
 [ext_resource type="Script" uid="uid://bs784sar2r12q" path="res://Scene's/Player/player.gd" id="1_1o2ln"]
 [ext_resource type="Texture2D" uid="uid://b5fyb1fjbfl1m" path="res://Scene's/Player/Player.png" id="1_8xa5j"]
 [ext_resource type="Texture2D" uid="uid://dwca3drc8x2o4" path="res://Assets/Ninja Adventure Pack/FX/Particle/Leaf Single.png" id="3_0yfqw"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1o2ln"]
-radius = 34.058773
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yfqw"]
 radius = 266.0921
@@ -31,10 +28,6 @@ scale_min = 0.29999998
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("follow_camera")]
 script = ExtResource("1_1o2ln")
 follow_camera = NodePath("Camera2D")
-
-[node name="Actual Collision" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 1)
-shape = SubResource("CircleShape2D_1o2ln")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.99999994, 0.99999994)
