@@ -19,10 +19,10 @@ func _physics_process(delta: float) -> void:
 	velocity = dir * move_speed
 	move_and_slide()
 
- #Spin Sprite ? Sal die dalk moet animate vir die sideview wat ons gaan... 
+ # Spin Sprite ? Sal die dalk moet animate vir die sideview wat ons gaan... 
 	if has_node("Sprite"):
 		$Sprite.rotation += 5.0 * delta
 
- # Moving debug as i didnt have any other things in the scene to test - TO remove
+ # Moving debug as i didnt have any other things in the scene to test - To remove
 	if dir != Vector2.ZERO:
 		print("Player is moving in direction:", dir)
