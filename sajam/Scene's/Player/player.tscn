@@ -1,28 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmyk70ytsl6j6"]
+[gd_scene load_steps=8 format=3 uid="uid://dmyk70ytsl6j6"]
 
 [ext_resource type="Script" uid="uid://bs784sar2r12q" path="res://Scene's/Player/player.gd" id="1_1o2ln"]
 [ext_resource type="Texture2D" uid="uid://b5fyb1fjbfl1m" path="res://Scene's/Player/Player.png" id="1_8xa5j"]
-[ext_resource type="Script" uid="uid://cylymanosw5yv" path="res://Scene's/Player/rain.gd" id="2_vpbcj"]
-[ext_resource type="Texture2D" uid="uid://bqrq7p67d56ka" path="res://Assets/Ninja Adventure Pack/FX/Particle/Rain.png" id="3_ks8de"]
+[ext_resource type="Texture2D" uid="uid://dwca3drc8x2o4" path="res://Assets/Ninja Adventure Pack/FX/Particle/Leaf Single.png" id="3_0yfqw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o2ln"]
 radius = 34.058773
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vpbcj"]
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(0, 0, 1)
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = -1.6093254e-05
-gravity = Vector3(0, 98, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yfqw"]
 radius = 266.0921
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpbcj"]
 radius = 68.0294
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vpbcj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(400, 400, 400)
+angular_velocity_min = 9.999984
+angular_velocity_max = 99.999985
+orbit_velocity_min = 0.050000098
+orbit_velocity_max = 0.1000001
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.29999998
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("follow_camera")]
 script = ExtResource("1_1o2ln")
@@ -34,16 +38,8 @@ shape = SubResource("CircleShape2D_1o2ln")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Rain" type="Node2D" parent="Camera2D"]
-position = Vector2(0, -552.00006)
-script = ExtResource("2_vpbcj")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Camera2D/Rain"]
-rotation = 0.0017284979
-amount = 1000
-texture = ExtResource("3_ks8de")
-process_material = SubResource("ParticleProcessMaterial_vpbcj")
+position_smoothing_enabled = true
+position_smoothing_speed = 3.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
@@ -65,6 +61,13 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BreakArea"]
 position = Vector2(0, 3.0000005)
 shape = SubResource("CircleShape2D_vpbcj")
+
+[node name="Tornado Wind" type="GPUParticles2D" parent="."]
+amount = 200
+sub_emitter = NodePath(".")
+texture = ExtResource("3_0yfqw")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_vpbcj")
 
 [connection signal="body_entered" from="WindArea" to="." method="_on_wind_area_body_entered"]
 [connection signal="body_exited" from="WindArea" to="." method="_on_wind_area_body_exited"]

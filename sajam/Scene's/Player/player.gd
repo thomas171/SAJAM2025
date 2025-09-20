@@ -9,6 +9,7 @@ extends CharacterBody2D
 var inside_wind: Array = []
 var break_targets: Array = []
 var _damage_t := 0.0
+var tornado_speed := 100.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var wind_shape: CollisionShape2D = $WindArea/CollisionShape2D
