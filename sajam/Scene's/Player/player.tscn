@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmyk70ytsl6j6"]
+[gd_scene load_steps=12 format=3 uid="uid://dmyk70ytsl6j6"]
 
 [ext_resource type="Script" uid="uid://bs784sar2r12q" path="res://Scene's/Player/player.gd" id="1_1o2ln"]
+[ext_resource type="Texture2D" uid="uid://c0bh3opwjbgbr" path="res://Assets/Ninja Adventure Pack/FX/Particle/Tornado.png" id="2_ks8de"]
 [ext_resource type="Texture2D" uid="uid://caifugw5ch78g" path="res://Assets/Ninja Adventure Pack/FX/Particle/Wind_Test.png" id="2_vpbcj"]
 [ext_resource type="Texture2D" uid="uid://dwca3drc8x2o4" path="res://Assets/Ninja Adventure Pack/FX/Particle/Leaf Single.png" id="3_0yfqw"]
 [ext_resource type="Texture2D" uid="uid://c3pier1pjxijk" path="res://Assets/Ninja Adventure Pack/FX/Particle/Stick.png" id="4_ks8de"]
@@ -114,6 +115,9 @@ sub_emitter = NodePath(".")
 texture = ExtResource("4_ks8de")
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_enimj")
+
+[node name="TornadoSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ks8de")
 
 [connection signal="body_entered" from="WindArea" to="." method="_on_wind_area_body_entered"]
 [connection signal="body_exited" from="WindArea" to="." method="_on_wind_area_body_exited"]

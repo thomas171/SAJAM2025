@@ -16,15 +16,19 @@ extends CharacterBody2D
 @export var turn_rate: float    = 1.5   
 @export var drift_jitter: float = 5.0     
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: Sprite2D = $TornadoSprite
+
 
 var inside_wind: Array = []
 var break_targets: Array = []
 var _damage_t := 0.0
 var tornado_speed := 100.0
+var tornado_rotation := 100.0
 var heading: Vector2 = Vector2.RIGHT
 
+
 func _physics_process(delta: float) -> void:
+	sprite.rotation * tornado_rotation * delta
 	if Input.is_action_just_pressed("pause"):
 		get_tree().quit()
 		

@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=4 uid="uid://dkp01chtoy5ql"]
 
 [ext_resource type="Texture2D" uid="uid://dk6bv8d34clbr" path="res://Assets/Ninja Adventure Pack/MAP STUFF -  Ninja Adventure Pack/Tilesets/TilesetField.png" id="1_b5lh4"]
-[ext_resource type="PackedScene" uid="uid://dmyk70ytsl6j6" path="res://Scene's/Player/player.tscn" id="2_mdr2a"]
 [ext_resource type="Texture2D" uid="uid://laxi8sdg73i1" path="res://Assets/Ninja Adventure Pack/MAP STUFF -  Ninja Adventure Pack/Tilesets/TilesetNature.png" id="2_v0hdq"]
 [ext_resource type="PackedScene" uid="uid://by1iydhqecyf2" path="res://Scene's/Assets/SmallTree.tscn" id="3_nkdlw"]
 [ext_resource type="PackedScene" uid="uid://ce0lppy53ubvk" path="res://Scene's/Assets/MediumTree.tscn" id="5_247yc"]
+[ext_resource type="PackedScene" uid="uid://b5irklcmw6sl6" path="res://Scene's/Player/tornado_test.tscn" id="6_247yc"]
 [ext_resource type="PackedScene" uid="uid://vi0ydb86pnah" path="res://Scene's/Assets/LargeTree.tscn" id="6_oyq37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5lh4"]
@@ -485,5 +485,4 @@ position = Vector2(396, -321)
 [node name="Large Tree" parent="Trees" instance=ExtResource("6_oyq37")]
 position = Vector2(729, -327)
 
-[node name="Player" parent="." instance=ExtResource("2_mdr2a")]
-position = Vector2(511, 90)
+[node name="TornadoTest" parent="." instance=ExtResource("6_247yc")]

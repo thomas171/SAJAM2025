@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5irklcmw6sl6"]
+
+[ext_resource type="Script" uid="uid://bbjee36hq4o3t" path="res://Scene's/Player/tornado_test.gd" id="1_obyp1"]
+[ext_resource type="PackedScene" uid="uid://c81yb72yrafuh" path="res://Scene's/Player/wind_fx.tscn" id="2_i6xf5"]
+[ext_resource type="Texture2D" uid="uid://c0bh3opwjbgbr" path="res://Assets/Ninja Adventure Pack/FX/Particle/Tornado.png" id="2_p7say"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7say"]
+radius = 266.0921
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_obyp1"]
+radius = 68.0294
+
+[node name="TornadoTest" type="RigidBody2D"]
+mass = 5.0
+gravity_scale = 0.0
+script = ExtResource("1_obyp1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.5
+
+[node name="WindFX" parent="." instance=ExtResource("2_i6xf5")]
+
+[node name="TornadoSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_p7say")
+
+[node name="WindArea" type="Area2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea"]
+shape = SubResource("CircleShape2D_p7say")
+
+[node name="BreakArea" type="Area2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakArea"]
+position = Vector2(0, 3.0000005)
+shape = SubResource("CircleShape2D_obyp1")
